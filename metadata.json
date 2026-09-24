@@ -1,0 +1,6 @@
+{
+  "name": "LEXGLOBAL — International Law Research Assistant",
+  "description": "Understand International Law. Trace Every Answer. AI-powered international law and maritime delimitation research assistant grounded in traceable legal sources.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

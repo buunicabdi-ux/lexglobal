@@ -1,0 +1,229 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile with role-based access",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["user", "admin"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email", "role", "createdAt"]
+    },
+    "Source": {
+      "title": "Source",
+      "description": "Authoritative international law source",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "institution": { "type": "string" },
+        "sourceType": { "type": "string" },
+        "legalDomain": { "type": "string" },
+        "jurisdiction": { "type": "string" },
+        "description": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "date": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "title", "institution", "sourceType", "officialUrl", "verified"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "Legal document or convention text",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "sourceId": { "type": "string" },
+        "title": { "type": "string" },
+        "documentType": { "type": "string" },
+        "institution": { "type": "string" },
+        "date": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "sourceId", "title", "documentType", "content", "verified"]
+    },
+    "Treaty": {
+      "title": "Treaty",
+      "description": "Multilateral or bilateral treaty",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "shortName": { "type": "string" },
+        "institution": { "type": "string" },
+        "adoptionDate": { "type": "string" },
+        "entryIntoForce": { "type": "string" },
+        "topic": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "verified": { "type": "boolean" },
+        "summary": { "type": "string" }
+      },
+      "required": ["id", "title", "shortName", "institution", "officialUrl", "verified"]
+    },
+    "TreatyProvision": {
+      "title": "TreatyProvision",
+      "description": "Specific article or provision within a treaty",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "treatyId": { "type": "string" },
+        "articleNumber": { "type": "string" },
+        "title": { "type": "string" },
+        "text": { "type": "string" },
+        "summary": { "type": "string" },
+        "officialSourceUrl": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["id", "treatyId", "articleNumber", "title", "text", "verified"]
+    },
+    "Case": {
+      "title": "Case",
+      "description": "Judicial decision or arbitral award",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "court": { "type": "string" },
+        "date": { "type": "string" },
+        "caseNumber": { "type": "string" },
+        "parties": { "type": "string" },
+        "legalArea": { "type": "string" },
+        "legalIssue": { "type": "string" },
+        "summary": { "type": "string" },
+        "officialUrl": { "type": "string" },
+        "verified": { "type": "boolean" }
+      },
+      "required": ["id", "title", "court", "date", "parties", "legalArea", "summary", "officialUrl", "verified"]
+    },
+    "LegalConcept": {
+      "title": "LegalConcept",
+      "description": "Canonical legal principle or doctrine",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "definition": { "type": "string" },
+        "relatedTreaties": { "type": "string" },
+        "relatedCases": { "type": "string" },
+        "relatedSources": { "type": "string" }
+      },
+      "required": ["id", "name", "definition"]
+    },
+    "ResearchQuery": {
+      "title": "ResearchQuery",
+      "description": "Analyzed research question submitted by a user",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "question": { "type": "string" },
+        "analysis": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "duration": { "type": "number" }
+      },
+      "required": ["id", "question", "createdAt"]
+    },
+    "ResearchAnswer": {
+      "title": "ResearchAnswer",
+      "description": "Grounded legal research synthesis and source chain",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "queryId": { "type": "string" },
+        "directAnswer": { "type": "string" },
+        "legalPrinciples": { "type": "string" },
+        "legalProvisions": { "type": "string" },
+        "relevantCases": { "type": "string" },
+        "limitations": { "type": "string" },
+        "evidenceStatus": { "type": "string", "enum": ["strong", "limited", "insufficient"] },
+        "citations": { "type": "string" },
+        "sourceChain": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "queryId", "directAnswer", "evidenceStatus", "createdAt"]
+    },
+    "Bookmark": {
+      "title": "Bookmark",
+      "description": "User saved research item or case",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "targetType": { "type": "string", "enum": ["case", "treaty", "source", "query"] },
+        "targetId": { "type": "string" },
+        "title": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "targetType", "targetId", "title", "createdAt"]
+    },
+    "UploadedDocument": {
+      "title": "UploadedDocument",
+      "description": "User uploaded legal instrument or brief for grounded Q&A",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "fileType": { "type": "string" },
+        "size": { "type": "number" },
+        "content": { "type": "string" },
+        "summary": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "name", "fileType", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User accounts and RBAC profiles"
+    },
+    "/sources/{sourceId}": {
+      "schema": "Source",
+      "description": "Verified legal sources from ICJ, ITLOS, UN"
+    },
+    "/documents/{documentId}": {
+      "schema": "Document",
+      "description": "Legal treaties, conventions, and judgments"
+    },
+    "/treaties/{treatyId}": {
+      "schema": "Treaty",
+      "description": "International treaties and conventions"
+    },
+    "/cases/{caseId}": {
+      "schema": "Case",
+      "description": "International case law records"
+    },
+    "/legalConcepts/{conceptId}": {
+      "schema": "LegalConcept",
+      "description": "Canonical legal doctrines"
+    },
+    "/researchQueries/{queryId}": {
+      "schema": "ResearchQuery",
+      "description": "Research question logs and query analyses"
+    },
+    "/researchAnswers/{answerId}": {
+      "schema": "ResearchAnswer",
+      "description": "Grounded research answers and chains"
+    },
+    "/bookmarks/{bookmarkId}": {
+      "schema": "Bookmark",
+      "description": "Saved items per user"
+    },
+    "/uploadedDocuments/{docId}": {
+      "schema": "UploadedDocument",
+      "description": "User uploaded legal documents for analysis"
+    }
+  }
+}
